@@ -9,9 +9,18 @@ print()
 
 print(sheet.max_row) ## returns the maximum number of rows in the sheet (also includes the header i.e row names)
 
+newColumnToBeAdded = sheet.cell(1,4)
+newColumnToBeAdded.value = "Updated prices" # new column name added
+
 print()
 for eachRow in range(2,sheet.max_row+1):
 
-    print(sheet.cell(eachRow,3).value)
-    # we want third column (index=3) of every row
+    oldCellValue = sheet.cell(eachRow,3).value
 
+    newCellValue = oldCellValue * 0.9 ## this new value will be added in a new column correspondingly
+
+    newColumn = sheet.cell(eachRow,4) ## get the location of column where updated prices will be stored
+    newColumn.value = newCellValue ## assigning value to the cell correspondingly
+
+
+wb.save('transactions.xlsx') ## save the changes <file-name-given-as-argument>
